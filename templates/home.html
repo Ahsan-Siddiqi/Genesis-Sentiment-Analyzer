@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+<div class="card">
+    <div class="card-header">
+      Hot Market Picks
+    </div>
+    <ul class="list-group list-group-flush">
+        {% for submission in submissions %}
+         <li class="list-group-item">{% submission-title %}</li>
+        {% endfor %}
+    </ul>
+</div>
+        
+ 
+
+{% endblock %}
