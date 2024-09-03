@@ -1,12 +1,16 @@
-import praw
+import praw, os
 from datetime import datetime
+from dotenv import load_dotenv
 
 from analyzer import analysis, extract_ticker
+
+# Load variables from env
+load_dotenv()
 
 # create instance of reddit
 reddit = praw.Reddit(
     client_id="OlMydM-kjWVxaKFeXBrNuA",
-    client_secret="2rdSeB0L-BVOd3e6NYUMEsRk0SugIw",
+    client_secret=os.getenv('REDDIT_CLIENT_SECRET'),
     user_agent="windows:genesis:v1 (by /u/ThisDudeHasNoLife )",
 )
 
@@ -40,3 +44,5 @@ def grabSubInfo(subs):
                             "sentiment": analysis(submission)})
 
     return submissions
+
+# print(grabSubInfo(["investing", "stocks", "Trading", "StockMarket", "ValueInvesting", "Ecomonics"]))

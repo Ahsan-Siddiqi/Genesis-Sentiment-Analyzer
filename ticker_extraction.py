@@ -1,8 +1,12 @@
+from dotenv import load_dotenv
 from transformers import AutoTokenizer, AutoModelForTokenClassification, pipeline
-import re, requests
+import re, requests, os
+
+# Load variables from env
+load_dotenv()
 
 # Setup finnhub client
-api_key = "crbkqq1r01qtpc70pgt0crbkqq1r01qtpc70pgtg"
+finnhub_api_key = os.getenv('FINNHUB_API_KEY')
 base_url = "https://finnhub.io/api/v1/"
 
 # Model from https://huggingface.co/dslim/bert-base-NER
@@ -114,7 +118,7 @@ def companyToTicker(companies):
 
     for company in companies:
         
-        url = f"{base_url}/search?q={company}&exchange=US&token={api_key}"
+        url = f"{base_url}/search?q={company}&exchange=US&token={finnhub_api_key}"
         lookup = requests.get(url)
 
         if lookup.status_code == 200:

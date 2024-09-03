@@ -5,3 +5,4 @@ torch
 finnhub-python
 numpy<2
 requests
+python-dotenv
