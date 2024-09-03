@@ -1,0 +1,7 @@
+praw
+flask
+transformers
+torch
+finnhub-python
+numpy<2
+requests

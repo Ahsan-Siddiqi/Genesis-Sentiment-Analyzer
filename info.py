@@ -1,6 +1,8 @@
 import praw
 from datetime import datetime
 
+from analyzer import analysis, extract_ticker
+
 # create instance of reddit
 reddit = praw.Reddit(
     client_id="OlMydM-kjWVxaKFeXBrNuA",
@@ -10,7 +12,15 @@ reddit = praw.Reddit(
 
 
 def grabSubInfo(subs):
+    """Grabs basic info from a given subreddit.
     
+    Params:
+    subs (submission)
+
+    Returns:
+    submissions (list of dicts)
+    """
+
     submissions = []
     subreddits = ""
 
@@ -19,19 +29,14 @@ def grabSubInfo(subs):
         subreddits += subreddit + "+"
     subreddits = subreddits[:-1]
 
-    for submission in reddit.subreddit(subreddits).hot(limit=25):
+    for submission in reddit.subreddit(subreddits).hot(limit=10):
         date = datetime.fromtimestamp(submission.created_utc)
         date = date.strftime("%Y-%m-%d %H:%M")
         submissions.append({"title" : submission.title,
                             "vote_ratio": submission.upvote_ratio,
                             "num_comments": submission.num_comments,
                             "date": date,
-                            "rel_tickers": getTickers(submission),
-                            "sentiment": sentiment(submission)})
+                            "tickers": extract_ticker(submission),
+                            "sentiment": analysis(submission)})
 
     return submissions
-
-def getTickers(sub):
-
-
-def sentiment(sub):
