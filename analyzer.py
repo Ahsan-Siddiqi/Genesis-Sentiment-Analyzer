@@ -54,6 +54,6 @@ def extract_ticker(sub):
         tickers.update(companyToTicker(grabCompany(sub.selftext)))
     
     if not tickers:
-        return None
+        return {"SPX", "INDU", "NDX"}
 
     return tickers

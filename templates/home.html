@@ -7,15 +7,68 @@
 {% block main %}
 
 <div class="card">
-    <div class="card-header">
-      Hot Market Picks
+    <div class="card-header fs-2 text-start">
+        Hot Market Picks
     </div>
     <ul class="list-group list-group-flush">
         {% for submission in submissions %}
-         <li class="list-group-item">{% submission-title %}</li>
+        <li class="list-group-item d-flex justify-content-between align-items-start" 
+            data-positive="{{ submission["sentiment"]["Positive"] }}"
+            data-neutral="{{ submission["sentiment"]["Neutral"] }}"
+            data-negative="{{ submission["sentiment"]["Negative"] }}"
+            id="submission{{ loop.index }}">
+                <div class="submission-content text-start">
+                    <h4>{{ submission["title"] }}</h5>
+                    <p>{{ submission["body"] }}</p>
+                    <small>
+                        Upvote Ratio: {{ submission["vote_ratio"] * 100}}% | 
+                        Comments: {{ submission["num_comments"] }} | 
+                        Date: {{ submission["date"] }} |
+                        Symbols: {% for ticker in submission["tickers"] %} {{ticker}} {% endfor %}
+                    </small>
+                </div>
+                <div class="sentiment-chart">
+                    <canvas id="sentimentChart{{ loop.index }}"></canvas>
+                </div>
+            </li>
         {% endfor %}
     </ul>
 </div>
+
+<!-- Add Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('.list-group-item').forEach(item => {
+            const positive = item.getAttribute('data-positive');
+            const neutral = item.getAttribute('data-neutral');
+            const negative = item.getAttribute('data-negative');
+            const index = item.id.replace('submission', '');
+            
+            const ctx = document.getElementById(`sentimentChart${index}`).getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Positive', 'Neutral', 'Negative'],
+                    datasets: [{
+                        data: [positive, neutral, negative],
+                        backgroundColor: ['#378717', '#CECECE', '#B00001'],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        }
+                    }
+                }
+            });
+        });
+    });
+</script>
         
  
 

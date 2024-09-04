@@ -37,6 +37,7 @@ def grabSubInfo(subs):
         date = datetime.fromtimestamp(submission.created_utc)
         date = date.strftime("%Y-%m-%d %H:%M")
         submissions.append({"title" : submission.title,
+                            "body" : submission.selftext,
                             "vote_ratio": submission.upvote_ratio,
                             "num_comments": submission.num_comments,
                             "date": date,
@@ -45,4 +46,4 @@ def grabSubInfo(subs):
 
     return submissions
 
-# print(grabSubInfo(["investing", "stocks", "Trading", "StockMarket", "ValueInvesting", "Ecomonics"]))
+# print(grabSubInfo(["Stocks", "StockMarket", "Investing", "ValueInvesting", "Economics", "Technology", "Finance"]))
