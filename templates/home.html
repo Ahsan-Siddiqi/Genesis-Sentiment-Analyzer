@@ -7,12 +7,12 @@
 {% block main %}
 
 <div class="card">
-    <div class="card-header fs-2 text-start">
-        Hot Market Picks
+    <div class="card-header fs-2 text-start text-light">
+        Today's Picks
     </div>
     <ul class="list-group list-group-flush">
         {% for submission in submissions %}
-        <li class="list-group-item d-flex justify-content-between align-items-start" 
+        <li class="list-group-item d-flex justify-content-between align-items-start text-light" 
             data-positive="{{ submission["sentiment"]["Positive"] }}"
             data-neutral="{{ submission["sentiment"]["Neutral"] }}"
             data-negative="{{ submission["sentiment"]["Negative"] }}"
@@ -25,9 +25,13 @@
                         Comments: {{ submission["num_comments"] }} | 
                         Date: {{ submission["date"] }} |
                         Symbols: {% for ticker in submission["tickers"] %} {{ticker}} {% endfor %}
+                        <p>
+
+                        </p>
+                        <a href="https://www.reddit.com{{ submission["link"] }}">{{ submission["link"] }}</a>
                     </small>
                 </div>
-                <div class="sentiment-chart">
+                <div class="sentiment-chart ms-2">
                     <canvas id="sentimentChart{{ loop.index }}"></canvas>
                 </div>
             </li>

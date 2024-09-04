@@ -42,7 +42,8 @@ def grabSubInfo(subs):
                             "num_comments": submission.num_comments,
                             "date": date,
                             "tickers": extract_ticker(submission),
-                            "sentiment": analysis(submission)})
+                            "sentiment": analysis(submission),
+                            "link": submission.permalink})
 
     return submissions
 

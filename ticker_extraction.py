@@ -7,7 +7,7 @@ load_dotenv()
 
 # Setup finnhub client
 finnhub_api_key = os.getenv('FINNHUB_API_KEY')
-base_url = "https://finnhub.io/api/v1/"
+base_url = "https://finnhub.io/api/v1"
 
 # Model from https://huggingface.co/dslim/bert-base-NER
 # Load NER model and tokenizer for company names
@@ -54,8 +54,9 @@ def grabCompany(text):
     current_label = None
 
     for entity in ner_results:
+
         # Check if the current label matches the previous one
-        if entity["entity"].startswith("B-") or (current_label and not entity["entity"].startswith("I-")):
+        if entity["entity"].startswith("B-") and not entity["word"].startswith("##"):
             if current_entity:
                 entities.append((current_entity, current_label))
             # Reset the current entity
@@ -117,13 +118,13 @@ def companyToTicker(companies):
     tickers = set()
 
     for company in companies:
-        
         url = f"{base_url}/search?q={company}&exchange=US&token={finnhub_api_key}"
         lookup = requests.get(url)
 
         if lookup.status_code == 200:
             data = lookup.json()
         else:
+            print(url)
             print(f"Error: {lookup.status_code}, {lookup.text}")
 
         if data["count"]:

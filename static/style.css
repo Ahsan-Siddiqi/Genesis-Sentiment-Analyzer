@@ -1,0 +1,18 @@
+body {
+    background: radial-gradient(circle, rgb(32, 31, 68) 10%, rgba(5, 0, 20, 1) 100%);
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.1); /* Light white background with opacity */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    border-radius: 10px; /* Optional: round the corners */
+    padding: 1rem; /* Optional: add padding */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Optional: subtle border */
+}
+
+.list-group-item {
+    background: rgba(255, 255, 255, 0.2); /* Slightly more opaque background for list items */
+    backdrop-filter: blur(8px); /* Apply blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: subtle border */
+    border-radius: 8px; /* Optional: round the corners */
+}
