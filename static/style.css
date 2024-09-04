@@ -16,3 +16,13 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: subtle border */
     border-radius: 8px; /* Optional: round the corners */
 }
+
+.btn-purple {
+    border: 1px solid #6f42c1; /* Border color to match */
+    color: #6f42c1; /* Text color */
+}
+
+.btn-purple:hover {
+    background-color: #5a2a9e; /* Slightly darker purple for hover effect */
+    border-color: #5a2a9e; /* Border color for hover effect */
+}

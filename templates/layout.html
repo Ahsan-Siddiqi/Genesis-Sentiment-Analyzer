@@ -11,7 +11,7 @@
         
         <link href="/static/style.css" rel="stylesheet">
 
-        <title>Gensis | {% block title %}{% endblock %}</title>
+        <title>Genesis | {% block title %}{% endblock %}</title>
     </head>
     <body>
 
@@ -24,7 +24,7 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="navbar-brand" aria-current="page" href="#">
+                    <a class="navbar-brand" aria-current="page" href="/">
                      <img src="static\media\logo3.png" alt="logo" width="150vh" height="auto" class="d-inline-block align-text-top">
                     </a>
                   </li>
@@ -34,17 +34,17 @@
                     </li>
                   {% endif %}
                 </ul>
-                <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" action="/search" method="post">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
                   <button class="btn btn-outline-secondary" type="submit">Search</button>
                 </form>
                 {% if session["user_id"] %}
                     <form class="d-flex mx-2" role="configure">
-                        <button class="btn btn-outline-primary" type="configure">configure</button>
+                        <button class="btn btn-purple" type="configure">configure</button>
                     </form>
                 {% else %}
                     <form class="d-flex mx-2" role="login">
-                        <button class="btn btn-outline-primary" type="login">Login</button>
+                        <button class="btn btn-purple" type="login">Login</button>
                     </form>
                 {% endif %}
               </div>

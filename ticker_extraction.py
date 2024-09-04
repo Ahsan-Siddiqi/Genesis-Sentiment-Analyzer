@@ -127,7 +127,11 @@ def companyToTicker(companies):
             print(url)
             print(f"Error: {lookup.status_code}, {lookup.text}")
 
-        if data["count"]:
-            tickers.add(data["result"][0]["symbol"])
+        try:
+            if data["count"]:
+                tickers.add(data["result"][0]["symbol"])
+
+        except UnboundLocalError: # stop gap solution to random bug
+            return tickers
 
     return tickers
