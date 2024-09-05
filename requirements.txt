@@ -6,3 +6,4 @@ finnhub-python
 numpy<2
 requests
 python-dotenv
+apscheduler

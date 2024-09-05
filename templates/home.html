@@ -7,12 +7,12 @@
 {% block main %}
 
 <div class="card">
-    <div class="card-header fs-2 text-start text-light">
+    <div class="card-header fs-2 text-start" style="-webkit-text-fill-color: #5a2a9e;">
         Today's Picks
     </div>
     <ul class="list-group list-group-flush">
         {% for submission in submissions %}
-        <li class="list-group-item d-flex justify-content-between align-items-start text-light" 
+        <li class="list-group-item d-flex justify-content-between align-items-start my-2" 
             data-positive="{{ submission["sentiment"]["Positive"] }}"
             data-neutral="{{ submission["sentiment"]["Neutral"] }}"
             data-negative="{{ submission["sentiment"]["Negative"] }}"
@@ -57,7 +57,7 @@
                     labels: ['Positive', 'Neutral', 'Negative'],
                     datasets: [{
                         data: [positive, neutral, negative],
-                        backgroundColor: ['#378717', '#CECECE', '#B00001'],
+                        backgroundColor: ['#378717', '#868686', '#B00001'],
                     }]
                 },
                 options: {

@@ -33,17 +33,21 @@ def grabSubInfo(subs):
         subreddits += subreddit + "+"
     subreddits = subreddits[:-1]
 
-    for submission in reddit.subreddit(subreddits).hot(limit=10):
-        date = datetime.fromtimestamp(submission.created_utc)
-        date = date.strftime("%Y-%m-%d %H:%M")
-        submissions.append({"title" : submission.title,
-                            "body" : submission.selftext,
-                            "vote_ratio": submission.upvote_ratio,
-                            "num_comments": submission.num_comments,
-                            "date": date,
-                            "tickers": extract_ticker(submission),
-                            "sentiment": analysis(submission),
-                            "link": submission.permalink})
+    try:
+        for submission in reddit.subreddit(subreddits).hot(limit=10):
+            date = datetime.fromtimestamp(submission.created_utc)
+            date = date.strftime("%Y-%m-%d %H:%M")
+            submissions.append({"title" : submission.title,
+                                "body" : submission.selftext,
+                                "vote_ratio": submission.upvote_ratio,
+                                "num_comments": submission.num_comments,
+                                "date": date,
+                                "tickers": extract_ticker(submission),
+                                "sentiment": analysis(submission),
+                                "link": submission.permalink})
+    except Exception as e:
+        print(f"Error While fetching search and processing data: {e}")
+        return -1
 
     return submissions
 
@@ -59,17 +63,20 @@ def searchSubInfo(text):
 
     submissions = []
     subreddits = ""
-
-    for submission in reddit.subreddit("Stocks+StockMarket+Investing+ValueInvesting+Economics+Technology+Finance").search(text, "hot", limit=10):
-        date = datetime.fromtimestamp(submission.created_utc)
-        date = date.strftime("%Y-%m-%d %H:%M")
-        submissions.append({"title" : submission.title,
-                            "body" : submission.selftext,
-                            "vote_ratio": submission.upvote_ratio,
-                            "num_comments": submission.num_comments,
-                            "date": date,
-                            "tickers": extract_ticker(submission),
-                            "sentiment": analysis(submission),
-                            "link": submission.permalink})
+    try:
+        for submission in reddit.subreddit("Stocks+StockMarket+Investing+ValueInvesting+Economics+Technology+Finance").search(text, "hot", limit=10):
+            date = datetime.fromtimestamp(submission.created_utc)
+            date = date.strftime("%Y-%m-%d %H:%M")
+            submissions.append({"title" : submission.title,
+                                "body" : submission.selftext,
+                                "vote_ratio": submission.upvote_ratio,
+                                "num_comments": submission.num_comments,
+                                "date": date,
+                                "tickers": extract_ticker(submission),
+                                "sentiment": analysis(submission),
+                                "link": submission.permalink})
+    except Exception as e:
+        print(f"Error While fetching search and processing data: {e}")
+        return -1
 
     return submissions
