@@ -17,13 +17,6 @@ model = AutoModelForTokenClassification.from_pretrained(model_name)
 
 ner_pipeline = pipeline("ner", model=model, tokenizer=tokenizer)
 
-# # Model from https://huggingface.co/Jean-Baptiste/roberta-ticker
-# # Load NER model and tokenizer for tickers
-# ticker_tokenizer = AutoTokenizer.from_pretrained("Jean-Baptiste/roberta-ticker")
-# ticker_model = AutoModelForTokenClassification.from_pretrained("Jean-Baptiste/roberta-ticker") 
-
-# ticker_ner = pipeline('ner', model=ticker_model, tokenizer=ticker_tokenizer, aggregation_strategy="simple")
-
 common_financial_abbreviations = {
     "EPS", "EBITDA", "P/E", "D/E", "ROI", "ROE", "ROA", "CAGR", "FIFO", "LIFO", "DCF", "NAV",
     "IPO", "ETF", "NAV", "ATM", "FD", "CD", "MBS", "REIT", "AUM", "NAV", "FY", "Q1", "Q2", "Q3", 
@@ -32,8 +25,8 @@ common_financial_abbreviations = {
     "IR", "IRA", "ETF", "HFT", "IPO", "ESG", "EV", "FCF", "GAAP", "KPI", "LIBOR", "M&A", "NAV", 
     "PM", "I", "EPS", "GDP", "APR", "FD", "CD", "ADR", "AGM", "YTM", "MoM", "EMH", "NPV", 
     "P&L", "PV", "FV", "WACC", "PMT", "SEC", "FCA", "FD", "IPO", "IRR", "RSU", "KYC", "AML", 
-    "AML", "CFD", "DMA", "DY", "ETF", "FX", "MOM", "YTD", "MoM", "PB", "PEG", "REIT", "SMA", 
-    "SIPC", "SG&A", "SOX", "TCA", "TTM", "VWAP", "WTI", "YTM", "roth", "VP", "A", "AI", "US"
+    "AML", "CFD", "DMA", "DY", "ETFS", "FX", "MOM", "YTD", "MoM", "PB", "PEG", "REIT", "SMA", 
+    "SIPC", "SG&A", "SOX", "TCA", "TTM", "VWAP", "WTI", "YTM", "roth", "VP", "A", "AI", "US", "CRA", "TFSA"
 }
 
  
@@ -89,11 +82,6 @@ def grabTicker(text):
     """
     
     tickers = set()
-    # tickerInfo = ticker_ner(text)
-
-    # for entity in tickerInfo:
-    #     print(entity)
-    #     tickers.add(entity["word"].strip())
 
     ticker_pattern = r'\b[A-Z]{1,5}\b'
     potential_tickers = re.findall(ticker_pattern, text)

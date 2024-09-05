@@ -7,14 +7,22 @@ body {
     backdrop-filter: blur(10px); /* Apply blur effect */
     border-radius: 10px; /* Optional: round the corners */
     padding: 1rem; /* Optional: add padding */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Optional: subtle border */
+}
+
+.card-header {
+    border: 0px;
 }
 
 .list-group-item {
     background: rgba(255, 255, 255, 0.2); /* Slightly more opaque background for list items */
     backdrop-filter: blur(8px); /* Apply blur effect */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: subtle border */
     border-radius: 8px; /* Optional: round the corners */
+    border: 0px;
+}
+
+.list-group-item:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .btn-purple {
