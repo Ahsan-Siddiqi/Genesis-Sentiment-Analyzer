@@ -28,15 +28,15 @@ def index():
         update_submissions()
         return render_template("error.html"), 500 
     
-    return render_template("home.html", submissions=subInfo)
+    return render_template("home.html", submissions=subInfo, type="Home")
 
 @app.route("/search", methods=["POST"])
 def search():
     """Search For Submissions"""
 
     if not request.form.get("query"):
-        return render_template("home.html", submissions=subInfo)
+        return render_template("home.html", submissions=subInfo, type="Home")
 
     searchInfo = searchSubInfo(request.form.get("query"))
     if searchInfo == -1: return render_template("error.html"), 500
-    return render_template("home.html", submissions=searchInfo)
+    return render_template("home.html", submissions=searchInfo, type="Search")
