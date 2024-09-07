@@ -7,7 +7,7 @@ from analyzer import analysis, extract_ticker
 reddit = praw.Reddit(
     client_id="OlMydM-kjWVxaKFeXBrNuA",
     client_secret=os.getenv('REDDIT_CLIENT_SECRET'),
-    user_agent="linux:genesis:v1 (by /u/ThisDudeHasNoLife )",
+    user_agent="linux:genesis.info.gf:v1 (by /u/ThisDudeHasNoLife )",
 )
 
 
