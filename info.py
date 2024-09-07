@@ -7,7 +7,7 @@ from analyzer import analysis, extract_ticker
 reddit = praw.Reddit(
     client_id="OlMydM-kjWVxaKFeXBrNuA",
     client_secret=os.getenv('REDDIT_CLIENT_SECRET'),
-    user_agent="windows:genesis:v1 (by /u/ThisDudeHasNoLife )",
+    user_agent="linux:genesis:v1 (by /u/ThisDudeHasNoLife )",
 )
 
 
@@ -43,7 +43,7 @@ def grabSubInfo(subs):
                                 "link": submission.permalink})
     except Exception as e:
         print(f"Error While fetching search and processing data: {e}", file=sys.stderr)
-        return e
+        return -1
 
     return submissions
 

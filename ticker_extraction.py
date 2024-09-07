@@ -1,9 +1,5 @@
-from dotenv import load_dotenv
 from transformers import AutoTokenizer, AutoModelForTokenClassification, pipeline
 import re, requests, os
-
-# Load variables from env
-load_dotenv()
 
 # Setup finnhub client
 finnhub_api_key = os.getenv('FINNHUB_API_KEY')
