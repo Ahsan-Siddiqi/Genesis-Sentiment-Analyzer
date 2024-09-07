@@ -24,11 +24,11 @@ scheduler.start()
 def index():
     """Show Top Submissions"""
     
-    if subInfo == -1: 
-        update_submissions()
-        return render_template("error.html"), 500 
+    #if subInfo == -1: 
+    update_submissions()
+    return render_template("error.html", error=subInfo), 500 
     
-    return render_template("home.html", submissions=subInfo, type="Home")
+    #return render_template("home.html", submissions=subInfo, type="Home")
 
 @app.route("/search", methods=["POST"])
 def search():

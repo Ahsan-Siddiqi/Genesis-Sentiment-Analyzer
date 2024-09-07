@@ -1,4 +1,4 @@
-import praw, os
+import praw, os, sys
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -46,8 +46,8 @@ def grabSubInfo(subs):
                                 "sentiment": analysis(submission),
                                 "link": submission.permalink})
     except Exception as e:
-        print(f"Error While fetching search and processing data: {e}")
-        return -1
+        print(f"Error While fetching search and processing data: {e}", file=sys.stderr)
+        return e
 
     return submissions
 
@@ -76,7 +76,7 @@ def searchSubInfo(text):
                                 "sentiment": analysis(submission),
                                 "link": submission.permalink})
     except Exception as e:
-        print(f"Error While fetching search and processing data: {e}")
+        print(f"Error While fetching search and processing data: {e}", file=sys.stderr)
         return -1
 
     return submissions
