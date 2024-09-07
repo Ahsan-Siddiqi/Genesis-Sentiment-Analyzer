@@ -1,11 +1,7 @@
 import praw, os, sys
 from datetime import datetime
-from dotenv import load_dotenv
 
 from analyzer import analysis, extract_ticker
-
-# Load variables from env
-load_dotenv()
 
 # create instance of reddit
 reddit = praw.Reddit(
