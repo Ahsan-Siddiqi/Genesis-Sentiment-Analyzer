@@ -11,7 +11,7 @@ load_dotenv()
 reddit = praw.Reddit(
     client_id="OlMydM-kjWVxaKFeXBrNuA",
     client_secret=os.getenv('REDDIT_CLIENT_SECRET'),
-    user_agent="windows:genesis:v1 (by /u/ThisDudeHasNoLife )",
+    user_agent="windows:genesis:v1 (by /u/[user] )", # =========== add user
 )
 
 
