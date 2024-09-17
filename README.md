@@ -32,6 +32,7 @@ Alpha Release Overview: [Youtube](https://www.youtube.com/watch?v=UEvtx_zl0Gg&t=
 * https://huggingface.co/mrm8488/distilroberta-finetuned-financial-news-sentiment-analysis 
 * https://huggingface.co/ProsusAI/finbert
 * https://finnhub.io/docs/api
+* https://github.com/reddit-archive/reddit/wiki/OAuth2-Quick-Start-Example#first-steps
 
 <br>
 
