@@ -3,6 +3,8 @@
 # Genesis Sentiment Analyzer
 Genesis is a sentiment analysis tool that analyses submissions from handpicked subreddits using natural language processing.
 
+[Progress](#progress) | [Models and API](#models-and-api) | [Development](#development) 
+
 <br>
 
 ## Progress
